@@ -36,9 +36,9 @@
   <input type="text" id="nameInput" placeholder="Enter your name">
   <br>
   <label>X Position:</label>
-  <input type="number" id="xPos" value="350">
+  <input type="number" id="xPos" value="540">
   <label>Y Position:</label>
-  <input type="number" id="yPos" value="620">
+  <input type="number" id="yPos" value="950">
   <br>
   <label>Text Color:</label>
   <input type="color" id="textColor" value="#dc9263">
@@ -65,8 +65,8 @@
       const canvas = document.getElementById('cardCanvas');
       const context = canvas.getContext('2d');
       const name = document.getElementById('nameInput').value.trim();
-      const xPos = parseInt(document.getElementById('xPos').value) || 350;
-      const yPos = parseInt(document.getElementById('yPos').value) || 620;
+      const xPos = parseInt(document.getElementById('xPos').value) || 540;
+      const yPos = parseInt(document.getElementById('yPos').value) || 950;
       const textColor = document.getElementById('textColor').value;
       const textSize = document.getElementById('textSize').value;
 
@@ -76,21 +76,23 @@
       }
 
       const background = new Image();
-      background.src = 'eid.png';
+      background.src = 'eid.png';  // Ensure this image is in the same folder as this file
 
-      background.onload = function() {
+      background.onload = function () {
+        console.log("Image loaded successfully!");
         context.clearRect(0, 0, canvas.width, canvas.height);
         context.drawImage(background, 0, 0, canvas.width, canvas.height);
 
-        context.font = `${textSize}px Berkshire Swash`;
+        context.font = `${textSize}px Arial, sans-serif`;
         context.fillStyle = textColor;
         context.textAlign = 'center';
-        
+
         context.fillText(name, xPos, yPos);
       };
 
       background.onerror = function () {
-        alert("Error loading background image. Check the image path.");
+        console.error("Error loading background image. Check the image path.");
+        alert("Error loading background image. Ensure 'eid.png' is in the correct directory.");
       };
     }
 
